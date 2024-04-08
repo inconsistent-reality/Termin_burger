@@ -121,7 +121,6 @@ function reservert() {
 
         document.getElementById("tatt").innerHTML = "Bord reservert";
         document.getElementById("tatt").style.color = "red";
-
     } else {
         document.getElementById("tatt").innerHTML = "Bord ledig";
         document.getElementById("tatt").style.color = "green";
