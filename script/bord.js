@@ -94,7 +94,7 @@ function visdiv() {
 
 function reservert() {
     tid = document.getElementById("tid").value;
-    bordtid = tid - 1;
+    bordtid = tid - 3;
 
 
     BordNr = document.getElementById("Nr").value;
@@ -116,8 +116,8 @@ function reservert() {
     }
     console.log(bord[BordNr][tid])
 
-    if (bord[BordNr][tid] == 0) {
-        console.log("bord " + BordNr + " bord nr død " + tid);
+    if (bord[BordNr][bordtid] == 0) {
+        //console.log("bord " + BordNr + " bord nr død " + tid);
 
         document.getElementById("tatt").innerHTML = "Bord reservert";
         document.getElementById("tatt").style.color = "red";
