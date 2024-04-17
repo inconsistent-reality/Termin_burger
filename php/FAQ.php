@@ -53,7 +53,7 @@ session_start();
     <button class="accordion">Hvordan reservere bord</button>
 <div class="panel">
   <p>Du trykker på "Bord" i menyen og velger et ledig bord og tidspunkt, etterfulgt
-     av navn og e-post. Se gjerne denne videoen som forklarer hvordan du gjør det.</p>
+     av navn og e-post. Se gjerne denne videoen som forklarer hvordan du gjør det: https://www.youtube.com/watch?v=xvFZjo5PgG0</p>
 </div>
 
 <button class="accordion">Hva er åpningstidene deres</button>

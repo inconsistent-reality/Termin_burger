@@ -1,9 +1,9 @@
 <?php
     // database details
-    $host = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "årsoppgave";
+    $host = "172.28.119.10:3306";
+    $username = "php";
+    $password = "password";
+    $dbname = "aarsoppgave";
 
     // creating a connection
     $con = mysqli_connect($host, $username, $password, $dbname);

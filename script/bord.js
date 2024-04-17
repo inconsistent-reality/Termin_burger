@@ -2,12 +2,12 @@ console.log("Connected bord.js");
 
 
 // loger ledigheten til sete 2 på bord 1 
-console.log(bord[0][1]);
 // HER BEGYNER BORD (╯°□°）╯︵ ┻━┻
 function optatt() {
     let tid = document.getElementById("tid").value;
     let bordtid = tid - 1;
-    tid = tid - 3;
+    *
+    //tid = tid -1 ;
 
     document.getElementById("tatt").style.color = "#f7a761";
 
@@ -17,9 +17,8 @@ function optatt() {
 
     if (tid != 0) {
         for (let i = 0; bord[i] != undefined; i++) {
-            console.log(bord[i][tid]);
             let bordet = i + 1;
-            if (bord[i][tid] === 0) {
+            if (bord[i][bordtid] === 0) {
                 //opptatt bord og tid
                 document.getElementById(bordet).style.backgroundColor = "red";
 
@@ -27,37 +26,12 @@ function optatt() {
                 //ledig bord og tid
                 document.getElementById(bordet).style.backgroundColor = "greenyellow";
             } else {
-                console.log(i + " - " + bord[i] + " - " + tid);
+                console.log("Bord: " + i + " \nReservasjoner: " + bord[i] + "\nTid: " + tid);
             }
         }
     } else {
 
     }
-    /*
-        if (tid != 0) {
-    
-            i = 0;
-            while (bord[i] != undefined) {
-                var bordet = i + 1
-                console.log(bord[i][tid]);
-                //if bord is reservert -> prompt " boks"
-                if (bord[i][tid] == 0) {
-                    console.log("bord " + bordet + " dødt klokka " + tid);
-    
-    
-                    //opptatt bord bli 
-                    document.getElementById(bordet).style.backgroundColor = "red";
-                    //document.getElementById js finner et elemnt med samme id som parantes. parantes = ()
-                }
-                else if (bord[i][tid] == 1) {
-                    console.log("bord " + bordet + " gjenomsto klokka " + tid);
-                    document.getElementById(bordet).style.backgroundColor = "greenyellow";
-                }
-                i++;
-            };
-    
-        }
-        */
 }
 
 function checkReservation() {
@@ -114,11 +88,9 @@ function reservert() {
     else if (BordNr == "seks") {
         BordNr = 6;
     }
-    console.log(bord[BordNr][tid])
+    //console.log(bord[BordNr][bordtid])
 
     if (bord[BordNr][bordtid] == 0) {
-        //console.log("bord " + BordNr + " bord nr død " + tid);
-
         document.getElementById("tatt").innerHTML = "Bord reservert";
         document.getElementById("tatt").style.color = "red";
     } else {
@@ -127,7 +99,6 @@ function reservert() {
 
     }
 }
-
 
 
 

@@ -95,12 +95,12 @@ $query = "SELECT * FROM bord;";
 $result = mysqli_query($con, $query);
 
 $matrix = [
-    [1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1]
+    [1, 1, 1, 1, 1, 1, 1, 1,1,1],
+    [1, 1, 1, 1, 1, 1, 1, 1,1,1],
+    [1, 1, 1, 1, 1, 1, 1, 1,1,1],
+    [1, 1, 1, 1, 1, 1, 1, 1,1,1],
+    [1, 1, 1, 1, 1, 1, 1, 1,1,1],
+    [1, 1, 1, 1, 1, 1, 1, 1,1,1],
 ];
 
 while ($row = mysqli_fetch_assoc($result)) {
@@ -132,8 +132,9 @@ while ($row = mysqli_fetch_assoc($result)) {
                 break;
         }
 
-        $tidDB = $tidDB - 3;
+        //$tidDB = $tidDB - 3;
         $matrix[$bordDB][$tidDB] = 0;
+
     }
 
 }
@@ -150,7 +151,7 @@ echo "<script> let bord = " . json_encode($matrix) . "</script>";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style/style.css" media="screen and (min-device-width: 800px)">
     <link rel="stylesheet" href="../style/phonestyle.css" media="screen and (max-device-width: 800px)">
-    <title>andmeleser</title>
+    <title>Bord</title>
 </head>
 
 <body>
@@ -273,8 +274,12 @@ echo "<script> let bord = " . json_encode($matrix) . "</script>";
                             var option = document.createElement("option");
                             option.value = i - 12;
                             option.text = i + ":00";
-
+                            // passer på at valgene er mer en "nå"
                             if (i > currentHour) {
+                                selectElement.add(option);
+                            }
+                            else{
+                                option.style = "color: red;"; 
                                 selectElement.add(option);
                             }
                         }
