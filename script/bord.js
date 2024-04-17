@@ -6,7 +6,7 @@ console.log("Connected bord.js");
 function optatt() {
     let tid = document.getElementById("tid").value;
     let bordtid = tid - 1;
-    *
+    
     //tid = tid -1 ;
 
     document.getElementById("tatt").style.color = "#f7a761";

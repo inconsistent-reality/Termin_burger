@@ -95,12 +95,12 @@ $query = "SELECT * FROM bord;";
 $result = mysqli_query($con, $query);
 
 $matrix = [
-    [1, 1, 1, 1, 1, 1, 1, 1,1,1],
-    [1, 1, 1, 1, 1, 1, 1, 1,1,1],
-    [1, 1, 1, 1, 1, 1, 1, 1,1,1],
-    [1, 1, 1, 1, 1, 1, 1, 1,1,1],
-    [1, 1, 1, 1, 1, 1, 1, 1,1,1],
-    [1, 1, 1, 1, 1, 1, 1, 1,1,1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 ];
 
 while ($row = mysqli_fetch_assoc($result)) {
@@ -131,8 +131,7 @@ while ($row = mysqli_fetch_assoc($result)) {
             default:
                 break;
         }
-
-        //$tidDB = $tidDB - 3;
+        $tidDB -= 1;
         $matrix[$bordDB][$tidDB] = 0;
 
     }
@@ -155,7 +154,6 @@ echo "<script> let bord = " . json_encode($matrix) . "</script>";
 </head>
 
 <body>
-    <script src="../script/bord.js"></script>
 
     <div class="meny">
         <a class="orange" href="../index.php">Hjem</a>
@@ -264,7 +262,7 @@ echo "<script> let bord = " . json_encode($matrix) . "</script>";
             <h1>Reserver bord</h1>
             <form method="POST">
                 <label for="tid">velg klokkeslett for å reservasjon bord</label>
-                <select name="tid" id="tid" onchange="visdiv(); optatt();">
+                <select name="tid" id="tid" onchange="chooseTid()">
                     <option value="0">--velg--</option>
                     <script>
                         var selectElement = document.getElementById("tid");
@@ -278,8 +276,8 @@ echo "<script> let bord = " . json_encode($matrix) . "</script>";
                             if (i > currentHour) {
                                 selectElement.add(option);
                             }
-                            else{
-                                option.style = "color: red;"; 
+                            else {
+                                option.style = "color: red;";
                                 selectElement.add(option);
                             }
                         }
@@ -349,6 +347,7 @@ echo "<script> let bord = " . json_encode($matrix) . "</script>";
             </div>
             <div class="classTest"></div>
 
+            <script src="../script/bord2.js"></script>
 </body>
 
 
