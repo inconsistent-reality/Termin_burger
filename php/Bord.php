@@ -31,15 +31,15 @@ if (isset($_POST['submit'])) // Sjekker om skjemaet er sendt inn
         $result = mysqli_query($con, $query);
 
         // Henter alle reservasjoner fra bord-tabellen
-        while ($row = mysqli_fetch_assoc($result)) {
+        // while ($row = mysqli_fetch_assoc($result)) {
 
-            if ($row["Nr"] == $Nr && $row["tid"] == $tid) {
-                echo "!!!";
-                $iBruk = "Bordet du valgte er dessverre reservert,<br>
-                           vennligst velg et annet bord <br>
-                           eller et annet klokkeslett";
-            }
-        }
+        //     if ($row["Nr"] == $Nr && $row["tid"] == $tid) {
+        //         echo "!!!";
+        //         $iBruk = "Bordet du valgte er dessverre reservert,<br>
+        //                    vennligst velg et annet bord <br>
+        //                    eller et annet klokkeslett";
+        //     }
+        // }
 
 
         if (!empty($Nr) && !empty($navn) && !empty($tid) && $iBruk == "") {
@@ -108,35 +108,14 @@ while ($row = mysqli_fetch_assoc($result)) {
     $tidDB = $row["tid"];
     if (isset($bordDB) && $bordDB != "" && $tidDB != "" && isset($tidDB)) {
         # var_dump($row);
-        switch ($bordDB) {
-            case 'ett':
-                $bordDB = 0;
-                break;
-            case 'to':
-                $bordDB = 1;
-                break;
-            case 'tre':
-                $bordDB = 2;
-                break;
-            case 'fire':
-                $bordDB = 3;
-                break;
-            case 'fem':
-                $bordDB = 4;
-                break;
-            case 'seks':
-                $bordDB = 5;
-                break;
-
-            default:
-                break;
-        }
+       $bordDB-= 1;
         $tidDB -= 1;
         $matrix[$bordDB][$tidDB] = 0;
+        }
 
     }
 
-}
+
 
 echo "<script> let bord = " . json_encode($matrix) . "</script>";
 
@@ -287,14 +266,14 @@ echo "<script> let bord = " . json_encode($matrix) . "</script>";
 
                 <div id="gjemt" class="gjemt">
                     <label for="Nr">bord nr</label>
-                    <select name="Nr" id="Nr" onchange="reservert()">
+                    <select name="Nr" id="Nr" onchange="chooseTable()">
                         <option value="0">--velg--</option>
-                        <option value="ett">1</option>
-                        <option value="to">2</option>
-                        <option value="tre">3</option>
-                        <option value="fire">4</option>
-                        <option value="fem">5</option>
-                        <option value="seks">6</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
                     </select>
                     <div class="tatt" id="tatt"></div>
                     <br>
@@ -331,6 +310,7 @@ echo "<script> let bord = " . json_encode($matrix) . "</script>";
             echo "bunn";
         }
     }
+    
     ?> bunntext">
 
             <!--dette er buntekst og alle div er for å sørge før at bun tekst forblir på bunene -->
