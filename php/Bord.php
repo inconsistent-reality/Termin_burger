@@ -31,18 +31,7 @@ if (isset($_POST['submit'])) // Sjekker om skjemaet er sendt inn
         $query = "SELECT * FROM bord;";
         $result = mysqli_query($con, $query);
 
-        // Henter alle reservasjoner fra bord-tabellen
-        // while ($row = mysqli_fetch_assoc($result)) {
-
-        //     if ($row["Nr"] == $Nr && $row["tid"] == $tid) {
-        //         echo "!!!";
-        //         $iBruk = "Bordet du valgte er dessverre reservert,<br>
-        //                    vennligst velg et annet bord <br>
-        //                    eller et annet klokkeslett";
-        //     }
-        // }
-
-
+            //laster opp reservasjoner//
         if (!empty($Nr) && !empty($navn) && !empty($tid) && $iBruk == "") {
             // Setter opp SQL-spørringen for å legge til en ny reservasjon
             $sql = "INSERT INTO bord (Nr, Navn, komentar, tid)
@@ -55,8 +44,8 @@ if (isset($_POST['submit'])) // Sjekker om skjemaet er sendt inn
 
 
         // vis du er Admin, vis Admin panel
-    } elseif (isset($_POST["submit"]) && $_SESSION['admin'] == 'Admin') {
-        //wlese fi hvis kriteriene ikke møttes gjør noe ennet 
+    }/* elseif (isset($_POST["submit"]) && $_SESSION['admin'] == 'Admin') {
+        //elese if hvis kriteriene ikke møttes gjør noe ennet 
 
         $query = "SELECT * FROM ticket;";
         $result = mysqli_query($con, $query);// den er den som kobler till database og gir en spøring
@@ -79,12 +68,20 @@ if (isset($_POST['submit'])) // Sjekker om skjemaet er sendt inn
                 // echo $row["Nr"] ." = ". $Nr;
                 // echo $query."<br>";
             }
-        } else {
+        } */elseif(isset($_POST["id"]) && isset($_POST["submit"]) && $_SESSION['admin'] == 'Admin'){
+            //lagre edringer fra admin//
+            $updateQuery = "UPDATE bord SET Nr='$Nr', komentar='$komentar', tid='$tid' WHERE id = '$id'";
+            
+            
+            
+            
+        }
+        else{
             die('Error querying database: ' . mysqli_error($con));
         }
 
     }
-}
+
 
 ?>
 

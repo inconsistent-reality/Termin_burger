@@ -109,8 +109,13 @@ if( $result = mysqli_query($con, $query)){
 
         //skrive ut alt som ELEGANT html kode
         echo"<tr><td>   ".$brukernavn." </td><td> ".$mld."  </td><td> ". $tid."</td><td>
-        <select name='newStatus_".$rowname."'><option value=".$status.">".$status."</option>
-        <option value='jobbes på'>jobbes på</option><option value='ikke besvart'>ikke besvart</option><option value='løst'>løst</option></select>
+        <select name='newStatus_".$rowname."'>
+        <option value=".$status.">".$status."</option>
+        <option value='jobbes på'>jobbes på</option>
+        <option value='ikke besvart'>ikke besvart</option>
+        <option value='løst'>løst</option>
+
+        </select>
         </td>
         <td>
         <input type='checkbox' id='slett' name='slett_".$rowname."' value='slett'>
