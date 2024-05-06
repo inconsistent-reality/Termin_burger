@@ -1,106 +1,56 @@
-console.log("Connected bord.js");
+console.log("Connected bord.js");// sier ifra at denne fillen er lastet inn
 
+/// setter HTML elementer som konstante variabler
+const tidEL = document.getElementById("tid");
+const gjemtEL = document.getElementById("gjemt");
+const tableEL = document.getElementById("Nr");
 
-// loger ledigheten til sete 2 på bord 1 
-// HER BEGYNER BORD (╯°□°）╯︵ ┻━┻
-function optatt() {
-    let tid = document.getElementById("tid").value;
-    let bordtid = tid - 1;
-    
-    //tid = tid -1 ;
+//viser om farge koden bassert på om bord er ledig eller opptat på valgt tidspunkt//
+function BordFargerFraTid(klokka) {
+    //array offset(array er en liste som starter på null)
+    klokka -= 1;
+    //loop gjennom og se om de er opptatt
+    for (let i = 0; i < 6; i++) {
+        if (bord[i][klokka] == 1) {
+            console.log("Bord " + (i + 1) + " er ledig");
+            document.getElementById(i + 1).style = "background-color:greenyellow;";
+        } else {
+            console.log("Bord " + (i + 1) + " er reservert");
+            document.getElementById(i + 1).style = "background-color:red;";
 
-    document.getElementById("tatt").style.color = "#f7a761";
-
-
-    console.log("klokka:" + tid);
-
-
-    if (tid != 0) {
-        for (let i = 0; bord[i] != undefined; i++) {
-            let bordet = i + 1;
-            if (bord[i][bordtid] === 0) {
-                //opptatt bord og tid
-                document.getElementById(bordet).style.backgroundColor = "red";
-
-            } else if (bord[i][tid] === 1) {
-                //ledig bord og tid
-                document.getElementById(bordet).style.backgroundColor = "greenyellow";
-            } else {
-                console.log("Bord: " + i + " \nReservasjoner: " + bord[i] + "\nTid: " + tid);
-            }
         }
-    } else {
-
     }
 }
+// console.log betty print ut(skriv ut())
 
-function checkReservation() {
-    var selectedTime = document.getElementById("reservationTime").value;
-    var currentTime = new Date();
-    var selectedDate = new Date("2000-01-01 " + selectedTime); // Assuming the date is not important for this example
 
-    // Compare the selected time with the current time
-    if (selectedDate <= currentTime) {
-        document.getElementById("result").innerText = "Du kan ikke reservere for tidligere tidspunkt.";
+function chooseTid() {
+    // hente ny variabel-verdi
+    let valgtTid = tidEL.value;// tid elemente sin verdi(value)
+    console.log(valgtTid);
+    if (valgtTid == 0) {// vis du iikk e har valgt en tid så er verdien 0
+        gjemtEL.style = "display: none;";
+
     } else {
-        document.getElementById("result").innerText = "Reservasjon vellykket!";
-        // Add your reservation logic here
+        BordFargerFraTid(valgtTid);
+        gjemtEL.style = "display: block;";// gjør synlig
     }
-
-
-
-
 }
-
-
-function visdiv() {
-    document.getElementById("rød").innerHTML = "<?php $iBruk = ''; ?>";
-
-    if (document.getElementById("tid").value != 0) {
-        document.getElementById("gjemt").style.display = "block";
-    }
-    else {
-        document.getElementById("gjemt").style.display = "none";
-    }
-};
-
-
-
-function reservert() {
-    tid = document.getElementById("tid").value;
-    bordtid = tid - 3;
-
-
-    BordNr = document.getElementById("Nr").value;
-    if (BordNr == "ett") {
-        BordNr = 0;
-    } else if (BordNr == "to") {
-        BordNr = 1;
-    } else if (BordNr == "tre") {
-        BordNr = 2;
-    } else if (BordNr == "fire") {
-        BordNr = 3;
-    } else if (BordNr == "fem") {
-        BordNr = 4;
-    } else if (BordNr == "seks") {
-        BordNr = 5;
-    }
-    else if (BordNr == "seks") {
-        BordNr = 6;
-    }
-    //console.log(bord[BordNr][bordtid])
-
-    if (bord[BordNr][bordtid] == 0) {
+function chooseTable() {
+    //henter verdiene fra elemntene og setter verdiene fra 1-6 til 0-5 pga. array
+    let valgtNr = tableEL.value;
+    let valgtTid = tidEL.value;
+    valgtNr -= 1;
+    valgtTid -= 1;
+    //
+    if (bord[valgtNr][valgtTid] == 0) {
+        //BORD ER OPPTATT
         document.getElementById("tatt").innerHTML = "Bord reservert";
         document.getElementById("tatt").style.color = "red";
     } else {
+        //BORD ER LEDIG
         document.getElementById("tatt").innerHTML = "Bord ledig";
         document.getElementById("tatt").style.color = "green";
-
     }
+
 }
-
-
-
-
-//   episten did't kill himself

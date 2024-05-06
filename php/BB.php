@@ -23,7 +23,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
 
-    $sql = "INSERT INTO borgar (brukernavn, tid, drop0, drop1, drop2, drop3, drop4, drop5, drop6, drop7, drop8) VALUES ('$brukernavn', '$tid', '$drop', '$drop1', '$drop2', '$drop3', '$drop4', '$drop5', '$drop6', '$drop7', '$drop8')";
+    $sql = "INSERT INTO borgar (brukernavn, tid, drop0, drop1, drop2, drop3, drop4, drop5, drop6, drop7, drop8, status)
+     VALUES ('$brukernavn', '$tid', '$drop', '$drop1', '$drop2', '$drop3', '$drop4', '$drop5', '$drop6', '$drop7', '$drop8','0')";
 
     // echo $sql;
 

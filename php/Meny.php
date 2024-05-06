@@ -9,7 +9,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Meny</title>
     <link rel="stylesheet" href="../style/style.css" media="screen and (min-device-width: 800px)">
     <link rel="stylesheet" href="../style/phonestyle.css" media="screen and (max-device-width: 800px)">
 </head>
@@ -26,8 +26,8 @@ session_start();
         <a class="orange" href="BB.php">Bygg</a>
         <?php if (isset($_SESSION['admin']) && $_SESSION['admin'] === 'Admin') { ?>
                 <a class="orange" href="tickting/brukerS.php">støtte</a>
+                <a class="orange" href="showBB.PHP">se Bygg</a>
         <?php } ?>
-        <a class="orange" href="showBB.PHP">se Bygg</a>
 
         <?php
         if ($_SESSION) {

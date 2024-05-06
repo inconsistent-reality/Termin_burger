@@ -5,7 +5,7 @@ session_start();
 
 
 <?php
-include("koble.php");
+include ("koble.php"); // koler til database//
 ?>
 
 <!DOCTYPE html>
@@ -25,12 +25,12 @@ include("koble.php");
         <a class="orange" href="../index.php">Hjem</a>
         <a class="orange" href="Meny.php">Meny</a>
         <a class="darkorange" href="Anmeldelse.php">Anmeldelse</a>
-                <a class="orange" href="bord.php">Bord</a>
+        <a class="orange" href="bord.php">Bord</a>
         <a class="orange" href="FAQ.php">FAQ</a>
         <a class="orange" href="tickting/ticket.php">ticket</a>
         <a class="orange" href="BB.php">Bygg</a>
         <?php if (isset($_SESSION['admin']) && $_SESSION['admin'] === 'Admin') { ?>
-                    <a class="orange" href="tickting/brukerS.php">støtte</a>
+            <a class="orange" href="tickting/brukerS.php">støtte</a>
         <?php } ?>
         <a class="orange" href="showBB.PHP">se Bygg</a>
 
@@ -46,7 +46,7 @@ include("koble.php");
         ?>
     </div>
     <h1 class="overskrift">
-    Andmeleser
+        Andmeleser
     </h1>
     <div class="line"></div>
     <br>
@@ -72,62 +72,63 @@ include("koble.php");
             </div>
             <input type="submit" name="submit" id="submit" value="Submit">
         </form>
-    <?php
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        if ($_SESSION) {
-            $NAME = $_SESSION['username'];
-        } else {
-            $NAME = "Navnløss";
+        <?php
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if ($_SESSION) {
+                $NAME = $_SESSION['username'];
+            } else {
+                $NAME = "Navnløss";
+            }
+            $TILBAKEMELDING = $_POST['TILBAKEMELDING'];
+            $stjerner = $_POST['stjerner'];
+            if (!empty($NAME) && !empty($TILBAKEMELDING) && !empty($stjerner)) {
+                $sql = "INSERT INTO reviw (brukere, komentar, stjerner) VALUES ('$NAME', '$TILBAKEMELDING', '$stjerner')";
+
+                // send query to the database to add values and confirm if successful
+                $rs = mysqli_query($con, $sql);
+            }
         }
-        $TILBAKEMELDING = $_POST['TILBAKEMELDING'];
-        $stjerner = $_POST['stjerner'];
-        if (!empty($NAME) && !empty($TILBAKEMELDING) && !empty($stjerner)) {
-            $sql = "INSERT INTO reviw (brukere, komentar, stjerner) VALUES ('$NAME', '$TILBAKEMELDING', '$stjerner')";
-
-            // send query to the database to add values and confirm if successful
-            $rs = mysqli_query($con, $sql);
-        }
-    }
-    ?>
+        ?>
 
 
-    <div>
-        <h2>tidligere opplevelser</h2>
-        <div></div>
-    </div>
-    <?php
-    // SQL QUERY 
-    $query = "SELECT * FROM reviw ORDER BY stjerner DESC;";
-    // FETCHING DATA FROM DATABASE 
-    $result = mysqli_query($con, $query);
-
-    if (mysqli_num_rows($result) > 0) {
-        // OUTPUT DATA OF EACH ROW 
-        $nrow = 0;
-        $anmeld = 0;
-        while ($row = mysqli_fetch_assoc($result)) {
-            $anmeld = $anmeld + $row["stjerner"];
-            $nrow++;
-
-        }
-
-
-        $avrage = $anmeld / $nrow;
-        echo number_format((float) $avrage, 2, ".", "") . "/5 <br><br>";
-
-
+        <div>
+            <h2>tidligere opplevelser</h2>
+            <div></div>
+        </div>
+        <?php
+        // SQL QUERY 
+        $query = "SELECT * FROM reviw ORDER BY stjerner DESC;";
+        // FETCHING DATA FROM DATABASE 
         $result = mysqli_query($con, $query);
+        // at svar fra databasen har info
+        if (mysqli_num_rows($result) > 0) {
+            // OUTPUT DATA OF EACH ROW (viser data fra radene via en while loop)
+            $nrow = 0;
+            $anmeld = 0;
+            while ($row = mysqli_fetch_assoc($result)) {
+                $anmeld = $anmeld + $row["stjerner"];
+                $nrow++;
 
-        while ($row = mysqli_fetch_assoc($result)) {
-            //print_r($row);    
-     
-            echo "<div class='reviews'>navn: " . $row["brukere"] . " <br> komentar: " .
-                $row["komentar"] . " <br> vurdering:" . $row["stjerner"] . "/5 <br><br></div>";
+            }
 
+
+            $avrage = $anmeld / $nrow; // gjeonmstite vurdering
+            echo number_format((float) $avrage, 2, ".", "") . "/5 <br><br>";//printer ut gjenomsnittete
+        
+
+            $result = mysqli_query($con, $query);// 
+        
+            while ($row = mysqli_fetch_assoc($result)) {
+                //print_r($row);    
+        
+                //viser u\alle tidligere opplevelser i html   
+                echo "<div class='reviews'>navn: " . $row["brukere"] . " <br> komentar: " .
+                    $row["komentar"] . " <br> vurdering:" . $row["stjerner"] . "/5 <br><br></div>";
+        
+            }
+        } else {
+            echo "0 results";
         }
-    } else {
-        echo "0 results";
-    }
 
 
 
@@ -137,8 +138,8 @@ include("koble.php");
 
 
 
-    ?>
-    
+        ?>
+
     </div>
     <!--dette er buntekst og alle div er for å sørge før at bun tekst forblir på bunene -->
     <br>
