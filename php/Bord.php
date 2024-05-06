@@ -9,8 +9,9 @@ session_start();
 
 include ("koble.php");
 
-$iBruk = "";
 // Variabel for feilmeldinger eller informasjon til brukeren
+$iBruk = "";
+
 if (isset($_POST['submit'])) // Sjekker om skjemaet er sendt inn
 
 // isset betyr at du trykker start til å sende inn info til database
@@ -31,15 +32,15 @@ if (isset($_POST['submit'])) // Sjekker om skjemaet er sendt inn
         $result = mysqli_query($con, $query);
 
         // Henter alle reservasjoner fra bord-tabellen
-        while ($row = mysqli_fetch_assoc($result)) {
+        // while ($row = mysqli_fetch_assoc($result)) {
 
-            if ($row["Nr"] == $Nr && $row["tid"] == $tid) {
-                echo "!!!";
-                $iBruk = "Bordet du valgte er dessverre reservert,<br>
-                           vennligst velg et annet bord <br>
-                           eller et annet klokkeslett";
-            }
-        }
+        //     if ($row["Nr"] == $Nr && $row["tid"] == $tid) {
+        //         echo "!!!";
+        //         $iBruk = "Bordet du valgte er dessverre reservert,<br>
+        //                    vennligst velg et annet bord <br>
+        //                    eller et annet klokkeslett";
+        //     }
+        // }
 
 
         if (!empty($Nr) && !empty($navn) && !empty($tid) && $iBruk == "") {
@@ -47,18 +48,18 @@ if (isset($_POST['submit'])) // Sjekker om skjemaet er sendt inn
             $sql = "INSERT INTO bord (Nr, Navn, komentar, tid)
              VALUES ('$Nr', '$navn', '$kommentar', '$tid')";
             $set_resultat = mysqli_query($con, $sql);
-            if (!$result) {
+            if (!$set_resultat) {//gikk spøringen bra?
                 die('Error: ' . mysqli_error($con));
             }
         }
 
 
+        // vis du er Admin, vis Admin panel
     } elseif (isset($_POST["submit"]) && $_SESSION['admin'] == 'Admin') {
-        // vis disse kriteriene møttes gjør x ting 
         //wlese fi hvis kriteriene ikke møttes gjør noe ennet 
 
         $query = "SELECT * FROM ticket;";
-        $result = mysqli_query($con, $query);
+        $result = mysqli_query($con, $query);// den er den som kobler till database og gir en spøring
         if ($result) {
             while ($row = mysqli_fetch_assoc($result)) {
                 $id = $row["id"];
@@ -92,15 +93,16 @@ if (isset($_POST['submit'])) // Sjekker om skjemaet er sendt inn
 <?php
 //'# lager en matrise som forteller når bordene er tilgjengelig
 $query = "SELECT * FROM bord;";
-$result = mysqli_query($con, $query);
-
+$result = mysqli_query($con, $query);// den er den som kobler till database og gir en spøring
+//matrisen er for javascript
+//
 $matrix = [
-    [1, 1, 1, 1, 1, 1, 1, 1,1,1],
-    [1, 1, 1, 1, 1, 1, 1, 1,1,1],
-    [1, 1, 1, 1, 1, 1, 1, 1,1,1],
-    [1, 1, 1, 1, 1, 1, 1, 1,1,1],
-    [1, 1, 1, 1, 1, 1, 1, 1,1,1],
-    [1, 1, 1, 1, 1, 1, 1, 1,1,1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 ];
 
 while ($row = mysqli_fetch_assoc($result)) {
@@ -108,37 +110,15 @@ while ($row = mysqli_fetch_assoc($result)) {
     $tidDB = $row["tid"];
     if (isset($bordDB) && $bordDB != "" && $tidDB != "" && isset($tidDB)) {
         # var_dump($row);
-        switch ($bordDB) {
-            case 'ett':
-                $bordDB = 0;
-                break;
-            case 'to':
-                $bordDB = 1;
-                break;
-            case 'tre':
-                $bordDB = 2;
-                break;
-            case 'fire':
-                $bordDB = 3;
-                break;
-            case 'fem':
-                $bordDB = 4;
-                break;
-            case 'seks':
-                $bordDB = 5;
-                break;
-
-            default:
-                break;
-        }
-
-        //$tidDB = $tidDB - 3;
+        $bordDB -= 1;
+        $tidDB -= 1;
         $matrix[$bordDB][$tidDB] = 0;
-
     }
 
 }
 
+
+// printer til javascript
 echo "<script> let bord = " . json_encode($matrix) . "</script>";
 
 ?>
@@ -155,7 +135,6 @@ echo "<script> let bord = " . json_encode($matrix) . "</script>";
 </head>
 
 <body>
-    <script src="../script/bord.js"></script>
 
     <div class="meny">
         <a class="orange" href="../index.php">Hjem</a>
@@ -168,9 +147,9 @@ echo "<script> let bord = " . json_encode($matrix) . "</script>";
         <?php if (isset($_SESSION['admin']) && $_SESSION['admin'] === 'Admin') { ?>
             <?php if (isset($_SESSION['admin']) && $_SESSION['admin'] === 'Admin') { ?>
                 <a class="orange" href="tickting/brukerS.php">støtte</a>
+                <a class="orange" href="showBB.PHP">se Bygg</a>
             <?php }
         } ?>
-        <a class="orange" href="showBB.PHP">se Bygg</a>
 
         <?php
         if ($_SESSION) {
@@ -202,15 +181,15 @@ echo "<script> let bord = " . json_encode($matrix) . "</script>";
 
             // mysqli_query($con, $query). mysqli_query ER INSTRUKSER OM Å SENDE MELDING OG $CON ER HVOR DEN SKAL HEN//
 //OG $QUERY ER HVA MELDINGEN ER   //
-            $result = mysqli_query($con, $query);
-
+            $result = mysqli_query($con, $query);// den er den som kobler till database og gir en spøring
+        
             // WHILE= SÅ LENGE DETTE HER SKJER GJØR X. HER GÅR KODEN GJENNOM RESULTATET OG PUTTER DET INN I $ROW, SKIL AT DET KAN BRUKES I KODEN                                                                                 //
             while ($row = mysqli_fetch_assoc($result)) {
-                $tid = ($row["tid"] + 12) . ":00";
-                echo "Nr: <input type='number' class='bestilltid' value='" . $row["id"] .
+                $tid = ($row["tid"] + 12) . ":00";// GJØR DET TIL ET KLOKESLETT
+                echo "Nr: <input type='number' class='bestilltid' value='" . $row["id"] .// SÅN AT VI KAN SE TIDEN
                     "' placeholder='" . $row["id"] . "'> - ";
                 // DETTE ER SELECKT KNAPEN FOR Å GI VALGET OM KLOKESLETT FOR RESERVASJON OG LEDIGE BORD //
-                echo "  navn: " . $row["navn"] .
+                echo "  navn: " . $row["navn"] .// ADMIN PANLET
                     " - tid <select name='tid" . $row["id"] . "'>
                 <option value='" . $row["tid"] . "'>" . $tid . "</option>
                 <option value='1'>13:00</option>
@@ -264,12 +243,12 @@ echo "<script> let bord = " . json_encode($matrix) . "</script>";
             <h1>Reserver bord</h1>
             <form method="POST">
                 <label for="tid">velg klokkeslett for å reservasjon bord</label>
-                <select name="tid" id="tid" onchange="visdiv(); optatt();">
+                <select name="tid" id="tid" onchange="chooseTid()">
                     <option value="0">--velg--</option>
                     <script>
                         var selectElement = document.getElementById("tid");
                         var currentHour = new Date().getHours();
-
+                        //legger til dynamisk klokkeslett for dropdown
                         for (var i = 13; i <= 22; i++) {
                             var option = document.createElement("option");
                             option.value = i - 12;
@@ -278,8 +257,8 @@ echo "<script> let bord = " . json_encode($matrix) . "</script>";
                             if (i > currentHour) {
                                 selectElement.add(option);
                             }
-                            else{
-                                option.style = "color: red;"; 
+                            else {
+                                option.style = "color: red;";
                                 selectElement.add(option);
                             }
                         }
@@ -287,16 +266,16 @@ echo "<script> let bord = " . json_encode($matrix) . "</script>";
                 </select><br><br>
                 <!-- Skjuler visse elementer basert på valgt tidspunkt -->
 
-                <div id="gjemt" class="gjemt">
+                <div id="gjemt" class="gjemt"><!--vis bordvelger bare når du har valgt tid -->
                     <label for="Nr">bord nr</label>
-                    <select name="Nr" id="Nr" onchange="reservert()">
+                    <select name="Nr" id="Nr" onchange="chooseTable()">
                         <option value="0">--velg--</option>
-                        <option value="ett">1</option>
-                        <option value="to">2</option>
-                        <option value="tre">3</option>
-                        <option value="fire">4</option>
-                        <option value="fem">5</option>
-                        <option value="seks">6</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
                     </select>
                     <div class="tatt" id="tatt"></div>
                     <br>
@@ -333,6 +312,7 @@ echo "<script> let bord = " . json_encode($matrix) . "</script>";
             echo "bunn";
         }
     }
+
     ?> bunntext">
 
             <!--dette er buntekst og alle div er for å sørge før at bun tekst forblir på bunene -->
@@ -349,6 +329,7 @@ echo "<script> let bord = " . json_encode($matrix) . "</script>";
             </div>
             <div class="classTest"></div>
 
+            <script src="../script/bord.js"></script>
 </body>
 
 

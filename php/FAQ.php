@@ -58,7 +58,7 @@ session_start();
 
 <button class="accordion">Hva er åpningstidene deres</button>
 <div class="panel">
-  <p>Vi holder åpent alle dager mellom 14:00 og 22:00!</p>
+  <p>Vi holder åpent alle dager mellom 13:00 og 23:00!</p>
 </div>
 
 <button class="accordion">Hvor står allergier?</button>
