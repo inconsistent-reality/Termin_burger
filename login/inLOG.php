@@ -8,7 +8,7 @@ if (isset($_POST['submit'])) {// sjekker om du trykker på log in knapen//
     $passord = md5($_POST['passord']);
 
     //Koble til databasen
-    $dbc = mysqli_connect('localhost', 'root', '', 'årsoppgave')
+    $dbc = mysqli_connect('172.28.119.10:3306', 'php', 'password', 'aarsoppgave')
         or die('Error connecting to MySQL server.');
 
     //Gjøre klar SQL-strengen
