@@ -14,76 +14,79 @@ $iBruk = "";
 
 if (isset($_POST['submit'])) // Sjekker om skjemaet er sendt inn
 
-// isset betyr at du trykker start til å sende inn info til database
+    // isset betyr at du trykker start til å sende inn info til database
 // Sjekker om nødvendige skjemafelter er satt
+    //print_r($_POST);
 
-    if (isset($_POST['Nr']) && isset($_POST['navn']) && isset($_POST['kommentar']) && isset($_POST['tid'])) {
-        // Setter datoen til 1 (endre dette hvis du vil bruke dato)
-        $dato = 1;
-        $dato = 1;
-        $Nr = $_POST['Nr'];
-        $navn = $_POST['navn'];
-        $kommentar = $_POST['kommentar'];
-        $tid = $_POST['tid'];
+if (isset($_POST['Nr']) && isset($_POST['navn']) && isset($_POST['kommentar']) && isset($_POST['tid'])) {
+    // Setter datoen til 1 (endre dette hvis du vil bruke dato)
+    $dato = 1;
+    $dato = 1;
+    $Nr = $_POST['Nr'];
+    $navn = $_POST['navn'];
+    $kommentar = $_POST['kommentar'];
+    $tid = $_POST['tid'];
 
-        // Henter alle reservasjoner n fra bord-tabellen
+    // Henter alle reservasjoner n fra bord-tabellen
 
-        $query = "SELECT * FROM bord;";
-        $result = mysqli_query($con, $query);
+    $query = "SELECT * FROM bord;";
+    $result = mysqli_query($con, $query);
 
-            //laster opp reservasjoner//
-        if (!empty($Nr) && !empty($navn) && !empty($tid) && $iBruk == "") {
-            // Setter opp SQL-spørringen for å legge til en ny reservasjon
-            $sql = "INSERT INTO bord (Nr, Navn, komentar, tid)
+    //laster opp reservasjoner//
+    if (!empty($Nr) && !empty($navn) && !empty($tid) && $iBruk == "") {
+        // Setter opp SQL-spørringen for å legge til en ny reservasjon
+        $sql = "INSERT INTO bord (Nr, Navn, komentar, tid)
              VALUES ('$Nr', '$navn', '$kommentar', '$tid')";
-            $set_resultat = mysqli_query($con, $sql);
-            if (!$set_resultat) {//gikk spøringen bra?
-                die('Error: ' . mysqli_error($con));
-            }
+        $set_resultat = mysqli_query($con, $sql);
+        if (!$set_resultat) {//gikk spøringen bra?
+            die('Error: ' . mysqli_error($con));
         }
-
-
-        // vis du er Admin, vis Admin panel
-    } elseif (isset($_POST["submit"]) && $_SESSION['admin'] == 'Admin') {
-        //elese if hvis kriteriene ikke møttes gjør noe ennet 
-
-        $query = "SELECT * FROM bord;";
-        $result = mysqli_query($con, $query);// den er den som kobler till database og gir en spøring
-        if ($result) {
-            while ($row = mysqli_fetch_assoc($result)) {
-                $id = $row["id"];
-                $Nr = $_POST["bord" . $row["id"]];
-                $tid = $_POST["tid" . $row["id"]];
-                $komentar = $row["komentar"];
-
-                if(isset($_POST["slett"])){
-                    $delete_query = "DELETE FROM bord WHERE  id=$id";
-                }
-                elseif ($row["Nr"] == $Nr && $row["tid"] == $tid) {
-                    //$iBruk = " endringer lagret :-D";
-                    // echo $iBruk;
-                } else {
-                    $updateQuery = "UPDATE bord SET Nr='$Nr', komentar='$komentar', tid='$tid' WHERE id = '$id'";
-                    //echo $updateQuery . "<br>";
-                    $updateResult = mysqli_query($con, $updateQuery) or die('Error updating database.');
-                }
-                // echo $row["Nr"] ." = ". $tid;
-                // echo $row["Nr"] ." = ". $Nr;
-                // echo $query."<br>";
-            }
-        } elseif(isset($_POST["id"]) && isset($_POST["submit"]) && $_SESSION['admin'] == 'Admin'){
-            //lagre edringer fra admin//
-            $updateQuery = "UPDATE bord SET Nr='$Nr', komentar='$komentar', tid='$tid' WHERE id = '$id'";
-            
-            
-            
-            
-        }
-        else{
-            die('Error querying database: ' . mysqli_error($con));
-        }
-
     }
+
+
+    // vis du er Admin, vis Admin panel
+} elseif (isset($_POST["submit"]) && $_SESSION['admin'] == 'Admin') {
+    //elese if hvis kriteriene ikke møttes gjør noe ennet 
+
+    $query = "SELECT * FROM bord;";
+    $result = mysqli_query($con, $query);// den er den som kobler till database og gir en spøring
+    if ($result) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $id = $row["id"];
+            $Nr = $_POST["bord" . $id];
+            $tid = $_POST["tid" . $id];
+            $komentar = $row["komentar"];
+
+            if (isset($_POST["slett" . $id])) {
+                //slett rad
+                $slettquery = "DELETE FROM bord WHERE id=" . $id . ";";
+                mysqli_query($con, $slettquery);
+            }
+
+            if ($row["Nr"] == $Nr && $row["tid"] == $tid) {
+                //$iBruk = " endringer lagret :-D";
+                // echo $iBruk;
+            } else {
+                $updateQuery = "UPDATE bord SET Nr='$Nr', komentar='$komentar', tid='$tid' WHERE id = '$id'";
+                //echo $updateQuery . "<br>";
+                $updateResult = mysqli_query($con, $updateQuery) or die('Error updating database.');
+            }
+            // echo $row["Nr"] ." = ". $tid;
+            // echo $row["Nr"] ." = ". $Nr;
+            // echo $query."<br>";
+        }
+    } elseif (isset($_POST["id"]) && isset($_POST["submit"]) && $_SESSION['admin'] == 'Admin') {
+        //lagre edringer fra admin//
+        $updateQuery = "UPDATE bord SET Nr='$Nr', komentar='$komentar', tid='$tid' WHERE id = '$id'";
+
+
+
+
+    } else {
+        die('Error querying database: ' . mysqli_error($con));
+    }
+
+}
 
 
 ?>
@@ -103,6 +106,8 @@ $matrix = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    // [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    // [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 ];
 
 while ($row = mysqli_fetch_assoc($result)) {
@@ -211,11 +216,14 @@ echo "<script> let bord = " . json_encode($matrix) . "</script>";
                 <option value='4'>4</option>
                 <option value='5'>5</option>
                 <option value='6'>6</option>
+            <!--    <option value='7'>7</option>
+                <option value='8'>8</option> -->
+
             </select>
-            <input type='checkbox'name='slett'> 
+            <input type='checkbox'name='slett" . $row["id"] . "'> 
             <br>";
             }
-            
+
             //     //
             echo "<input type='submit' value='Lagre endringer' name='submit' />
     </form></div></div>";
@@ -238,6 +246,8 @@ echo "<script> let bord = " . json_encode($matrix) . "</script>";
             <div class="flex">
                 <div id="5" class="border bord">5</div>
                 <div id="6" class="border bord">6</div>
+                <!-- <div id="7" class="border bord">7</div>
+                <div id="8" class="border bord">8</div> -->
             </div>
         </div>
         <!-- Bordoversikt -->
@@ -278,6 +288,11 @@ echo "<script> let bord = " . json_encode($matrix) . "</script>";
                         <option value="4">4</option>
                         <option value="5">5</option>
                         <option value="6">6</option>
+                        <!-- <option value="7">7</option>
+                        <option value="8">8</option> -->
+
+                        
+
                     </select>
                     <div class="tatt" id="tatt"></div>
                     <br>

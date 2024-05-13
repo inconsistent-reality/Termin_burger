@@ -10,7 +10,7 @@ function BordFargerFraTid(klokka) {
     //array offset(array er en liste som starter på null)
     klokka -= 1;
     //loop gjennom og se om de er opptatt
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < bord.length; i++) {
         if (bord[i][klokka] == 1) {
             console.log("Bord " + (i + 1) + " er ledig");
             document.getElementById(i + 1).style = "background-color:greenyellow;";

@@ -59,7 +59,7 @@ session_start();
             $email = $_POST['email'];
             
             //Koble til databasen
-            $dbc = mysqli_connect('localhost', 'root', '', 'terminoppgave')
+            $dbc = mysqli_connect('172.28.119.10', 'php', 'password', 'aarsoppgave')
               or die('Error connecting to MySQL server.');
             
             //Gjøre klar SQL-strengen
