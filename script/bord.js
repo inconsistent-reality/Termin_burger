@@ -5,15 +5,15 @@ const tidEL = document.getElementById("tid");
 const gjemtEL = document.getElementById("gjemt");
 const tableEL = document.getElementById("Nr");
 
-//viser om farge koden bassert på om bord er ledig eller opptat på valgt tidspunkt//
+//fargelegger om bord er ledig eller opptat på valgt tidspunkt//
 function BordFargerFraTid(klokka) {
     //array offset(array er en liste som starter på null)
     klokka -= 1;
     //loop gjennom og se om de er opptatt
     for (let i = 0; i < bord.length; i++) {
-        if (bord[i][klokka] == 1) {
+        if (bord[i][klokka] == 1) {//skjeker om matrisen er 1
             console.log("Bord " + (i + 1) + " er ledig");
-            document.getElementById(i + 1).style = "background-color:greenyellow;";
+            document.getElementById(i + 1).style = "background-color:greenyellow;"; 
         } else {
             console.log("Bord " + (i + 1) + " er reservert");
             document.getElementById(i + 1).style = "background-color:red;";
@@ -21,13 +21,13 @@ function BordFargerFraTid(klokka) {
         }
     }
 }
-// console.log betty print ut(skriv ut())
+// console.log betyr print ut(skriv ut())
 
 
 function chooseTid() {
-    // hente ny variabel-verdi
+    // hente ny variabel-verdi fra det man har valgt i html
     let valgtTid = tidEL.value;// tid elemente sin verdi(value)
-    console.log(valgtTid);
+    console.log(valgtTid);//
     if (valgtTid == 0) {// vis du iikk e har valgt en tid så er verdien 0
         gjemtEL.style = "display: none;";
 

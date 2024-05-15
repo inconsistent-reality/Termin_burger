@@ -83,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <br>
     <div class="ombygg">
     <div class="tk overskrift">
-    Bygg din burger for kun 399.99kr
+    Bygg din burger for kun 299.99kr
         </div>    
     
 I vår restaurant kan du oppleve det ultimate i tilpasning med vårt unike tilbud om å skape din egen burger.<br>

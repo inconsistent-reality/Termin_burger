@@ -30,6 +30,8 @@ session_start();
             <a class="orange" href="php/FAQ.php">FAQ</a>
             <a class="orange" href="php/tickting/ticket.php">ticket</a>
             <a class="orange" href="php/BB.php">Bygg</a>
+            <a class="orange" href="php/mal.php">Mal</a>
+
             <?php if (isset($_SESSION['admin']) && $_SESSION['admin'] === 'Admin') { ?>
                 <a class="orange" href="php/tickting/brukerS.php">støtte</a>
                 <a class="orange" href="php/showBB.PHP">se Bygg</a>
@@ -80,6 +82,8 @@ session_start();
     <br><br><br><br><br>
     <div class="qr-box">
         <img class="qr" src="../bilder/burgere/totaly legit.png" alt="">
+        <img class="qr" src="../bilder/aaa.jpg" alt="">
+
     </div>
     <br>
     <div class="bunntext">

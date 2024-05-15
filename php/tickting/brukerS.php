@@ -114,6 +114,7 @@ if( $result = mysqli_query($con, $query)){
         <option value='jobbes på'>jobbes på</option>
         <option value='ikke besvart'>ikke besvart</option>
         <option value='løst'>løst</option>
+       <!-- <option value = 'tomas'>tomas</option> -->
 
         </select>
         </td>
@@ -164,4 +165,4 @@ if( $result = mysqli_query($con, $query)){
 }else{
     header("location: ../../index.php");
 }
-?>
+?><!-- sender deg til index vis ikke du er admin -->
