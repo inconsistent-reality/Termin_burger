@@ -30,7 +30,6 @@ session_start();
             <a class="orange" href="php/FAQ.php">FAQ</a>
             <a class="orange" href="php/tickting/ticket.php">ticket</a>
             <a class="orange" href="php/BB.php">Bygg</a>
-            <a class="orange" href="php/mal.php">Mal</a>
 
             <?php if (isset($_SESSION['admin']) && $_SESSION['admin'] === 'Admin') { ?>
                 <a class="orange" href="php/tickting/brukerS.php">støtte</a>
@@ -79,10 +78,10 @@ session_start();
         JEG LIKER BURGER SÅ JEG LAGDET EN RESTAURANT :-p
     </div>
 
-    <br><br><br><br><br>
+    <br><br><br><br><br><!--bilder-->
     <div class="qr-box">
         <img class="qr" src="../bilder/burgere/totaly legit.png" alt="">
-        <img class="qr" src="../bilder/aaa.jpg" alt="">
+        <!-- <img class="qr" src="../bilder/aaa.jpg" alt=""> -->
 
     </div>
     <br>

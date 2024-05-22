@@ -34,6 +34,13 @@ if (isset($_POST['Nr']) && isset($_POST['navn']) && isset($_POST['kommentar']) &
 
     //laster opp reservasjoner//
     if (!empty($Nr) && !empty($navn) && !empty($tid) && $iBruk == "") {
+        $eropttat=false;
+        while($row=mysqli_fetch_assoc($result)){
+           if ($row['Nr']==$Nr&&$row['tid']==$tid){
+            $eropttat=true;
+        }
+        }
+        if(!$eropttat){
         // Setter opp SQL-spørringen for å legge til en ny reservasjon
         $sql = "INSERT INTO bord (Nr, Navn, komentar, tid)
              VALUES ('$Nr', '$navn', '$kommentar', '$tid')";
@@ -41,7 +48,9 @@ if (isset($_POST['Nr']) && isset($_POST['navn']) && isset($_POST['kommentar']) &
         if (!$set_resultat) {//gikk spøringen bra?
             die('Error: ' . mysqli_error($con));
         }
-    }
+    }else{
+        $iBruk="borde er reservert";
+    }}
 
 
     // vis du er Admin, vis Admin panel
@@ -99,7 +108,8 @@ $query = "SELECT * FROM bord;";
 $result = mysqli_query($con, $query);// den er den som kobler till database og gir en spøring
 //matrisen er for javascript
 //
-$matrix = [
+$matrix = [//coden er mutable(mulig å endres)
+    //
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -109,7 +119,7 @@ $matrix = [
     // [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     // [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 ];
-
+//  er alt sat? gå igjenom borende og sette i som ledige eller ikke //
 while ($row = mysqli_fetch_assoc($result)) {
     $bordDB = $row["Nr"];
     $tidDB = $row["tid"];
@@ -123,7 +133,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 }
 
 
-// printer til javascript
+// printer til javascript(gjør den tiljengelig til js)
 echo "<script> let bord = " . json_encode($matrix) . "</script>";
 
 ?>

@@ -58,7 +58,7 @@ session_start();
 
 <button class="accordion">Hva er åpningstidene deres</button>
 <div class="panel">
-  <p>Vi holder åpent alle dager mellom 13:00 og 23:00!</p>
+  <p>Vi holder åpent alle dager mellom 13:00 og 23:30!kjøkkenet stenger 23:00</p>
 </div>
 
 <button class="accordion">Hvor står allergier?</button>
@@ -68,7 +68,7 @@ session_start();
 
 <button class="accordion">Hva er størrelsen på burgerne deres?</button>
 <div class="panel">
-  <p>Alle våre burgere veier 170g, og du kan bestille ekstra patty hvis du er ekstra sulten.</p>
+  <p>Alle våre burgere veier 200g, og du kan bestille ekstra patty hvis du er ekstra sulten.</p>
 </div>
 
 <button class="accordion">Er det vegetariske alternativer?</button>
@@ -82,7 +82,7 @@ session_start();
      fra den norske gården med bonden PÅL Pålsen OG fra NORSKE BAKERIER.</p>
 </div>
 
-<button class="accordion">Kina?</button>
+<button class="accordion">Personvern?</button>
 <div class="panel">
   <p>Storebror ser alt :-D</p>
 </div>
