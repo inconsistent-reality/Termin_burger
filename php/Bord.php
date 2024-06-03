@@ -206,7 +206,9 @@ echo "<script> let bord = " . json_encode($matrix) . "</script>";
                 // DETTE ER SELECKT KNAPEN FOR Å GI VALGET OM KLOKESLETT FOR RESERVASJON OG LEDIGE BORD //
                 echo "  navn: " . $row["navn"] .// ADMIN PANLET
                     " - tid <select name='tid" . $row["id"] . "'>
-                <option value='" . $row["tid"] . "'>" . $tid . "</option>
+                <option value='" . $row["tid"] . "'>" . $tid . 
+                //  her er bord dropdown funkjunen 
+                "</option>
                 <option value='1'>13:00</option>
                 <option value='2'>14:00</option>
                 <option value='3'>15:00</option>
@@ -219,15 +221,18 @@ echo "<script> let bord = " . json_encode($matrix) . "</script>";
                 <option value='10'>22:00</option>
             </select>
             - Bord NR: <select name='bord" . $row["id"] . "'>
-                <option value='" . $row["Nr"] . "'>" . $row["Nr"] . "</option>
+                <option value='" . $row["Nr"] . "'>" . $row["Nr"] . 
+                // her selve bordet du dropdown velger
+                "</option>
                 <option value='1'>1</option>
                 <option value='2'>2</option>
                 <option value='3'>3</option>
                 <option value='4'>4</option>
                 <option value='5'>5</option>
                 <option value='6'>6</option>
-            <!--    <option value='7'>7</option>
-                <option value='8'>8</option> -->
+                <!-- <option value='7'>7</option>-->
+
+            <!-- <option value='8'>8</option> -->
 
             </select>
             <input type='checkbox'name='slett" . $row["id"] . "'> 
@@ -256,8 +261,9 @@ echo "<script> let bord = " . json_encode($matrix) . "</script>";
             <div class="flex">
                 <div id="5" class="border bord">5</div>
                 <div id="6" class="border bord">6</div>
-                <!-- <div id="7" class="border bord">7</div>
-                <div id="8" class="border bord">8</div> -->
+               <!--  <div id="7" class="border bord">7</div>-->
+
+              <!--  <div id="8" class="border bord">8</div> -->
             </div>
         </div>
         <!-- Bordoversikt -->
@@ -298,8 +304,8 @@ echo "<script> let bord = " . json_encode($matrix) . "</script>";
                         <option value="4">4</option>
                         <option value="5">5</option>
                         <option value="6">6</option>
-                        <!-- <option value="7">7</option>
-                        <option value="8">8</option> -->
+                       <option value="7">7</option>
+                       <!-- <option value="8">8</option> -->
 
                         
 

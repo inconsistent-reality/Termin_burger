@@ -1,5 +1,8 @@
+
+
 <?php
 session_start();
+//Start av PHP-sesjon:
 
 ?>
 

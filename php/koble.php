@@ -1,6 +1,6 @@
 <?php
     // database details
-    $host = "172.28.119.10:3306";//172.28.119.10: er ip adressen til vm maskin(hvilken dør 3306 er standar )
+    $host = "localhost";//172.28.119.10: er ip adressen til vm maskin(hvilken dør 3306 er standar )
     $username = "php";
     $password = "password";
     $dbname = "aarsoppgave";
