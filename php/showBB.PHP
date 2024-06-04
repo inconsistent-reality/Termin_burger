@@ -124,7 +124,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo '
                 <div id="ck-button">
                     <label>
-                        <input type="checkbox" onchange="submitEL()" name="delete-"' . $row["id"] . '><span>Fjern</span>
+                        <input type="checkbox" onchange="submitEL()" name="delete-' . $row["id"] . '"><span>Fjern</span>
                     </label>
                 </div>
                 <br>
