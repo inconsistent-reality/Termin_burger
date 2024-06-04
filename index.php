@@ -81,7 +81,7 @@ session_start();
     <br><br><br><br><br><!--bilder-->
     <div class="qr-box">
         <img class="qr" src="../bilder/burgere/totaly legit.png" alt="">
-        <!-- <img class="qr" src="../bilder/aaa.jpg" alt=""> -->
+        <img class="qr" src="../bilder/aaa.jpg" alt="">
 
     </div>
     <br>

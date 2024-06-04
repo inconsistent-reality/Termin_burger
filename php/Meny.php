@@ -56,29 +56,29 @@ session_start();
     ../style/ style.css  --> 
         <div class="burger">
             <img class="burger-img" src="../bilder/burgere/cheeseburger.png" alt="">
-            <h3>cheese burger</h3>
-            <p>norsk sorfe kjøtt, ost fra norske bonde</p>
+            <h3>Cheeseburger</h3>
+            <p>Norsk storfekjøtt og ost fra den norske bonde</p>
             <h4>G, N, M</h4>
         </div>
         <div class="burger">
             <img class="burger-img" src="../bilder/burgere/dubble-cheeseburger.png" alt="">
-            <h3>dubble trouble
+            <h3>Double trouble
             </h3>
-            <p> dobelt the meat no homo</p>
+            <p> Dobbelt kjøtt, dobbelt glede</p>
             <H3>B, E, SU, HV, M </H3>
         </div>
         <div class="burger">
             <img class="burger-img" src="../bilder/burgere/lonley-lettuse.png" alt="">
-            <h3>lonely lettuce</h3>
-            <p>burger uten ost, men med ketchup</p>
+            <h3>Lonely lettuce</h3>
+            <p>Burger uten ost, men med ketchup</p>
             <h3>H, SU, HV </h3>
 
 
         </div>
         <div class="burger">
             <img class="burger-img" src="../bilder/burgere/chunkey-cheese.png" alt="">
-            <h3>chunk cheese</h3>
-            <p>salat og ost I en en perfekt hamoni med kolesterol</p>
+            <h3>Chunky cheese</h3>
+            <p>Salat og ost I en en perfekt harmoni med kolesterol</p>
             <H3>HV, SY, M, SY,  </H3>
 
         </div>
@@ -87,22 +87,22 @@ session_start();
     <div class="burgermeny">
         <div class="burger">
             <img class="burger-img" src="../bilder/burgere/tribble-heart-attack.png" alt="">
-            <h3>triple heart attack
+            <h3>Triple heart attack
             </h3>
-            <p>not big mack</p>
+            <p>Størrelse på burgeren er viktig!</p>
             <H3>SU, M, HA, </H3>
         </div>
         <div class="burger">
             <img class="burger-img" src="../bilder/burgere/smooth-cheese.png" alt="">
-            <h3>smooth cheese
+            <h3>Smooth cheese
             </h3>
-            <p>chunk cheese bare smooth</p>
+            <p>Chunky cheese bare smooth</p>
             <H3>HA, M, SU, </H3>
         </div>
         <div class="burger">
             <img class="burger-img" src="../bilder/burgere/bigus-mackus.png" alt="">
             <h3>Bigus Macus</h3>
-            <p>lovlig ikke big mack</p>
+            <p>Lovlig ikke Big Mac</p>
             <H3>SU, SY, M, HV, H, </H3>
 
 

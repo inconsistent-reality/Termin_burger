@@ -116,7 +116,7 @@ $matrix = [//coden er mutable(mulig å endres)
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    // [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     // [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 ];
 //  er alt sat? gå igjenom borende og sette i som ledige eller ikke //
@@ -230,7 +230,7 @@ echo "<script> let bord = " . json_encode($matrix) . "</script>";
                 <option value='4'>4</option>
                 <option value='5'>5</option>
                 <option value='6'>6</option>
-                <!-- <option value='7'>7</option>-->
+                 <option value='7'>7</option
 
             <!-- <option value='8'>8</option> -->
 
@@ -261,7 +261,7 @@ echo "<script> let bord = " . json_encode($matrix) . "</script>";
             <div class="flex">
                 <div id="5" class="border bord">5</div>
                 <div id="6" class="border bord">6</div>
-               <!--  <div id="7" class="border bord">7</div>-->
+               <div id="7" class="border bord">7</div>
 
               <!--  <div id="8" class="border bord">8</div> -->
             </div>
