@@ -27,6 +27,8 @@ session_start();
         <a class="orange" href="FAQ.php">FAQ</a>
         <a class="orange" href="tickting/ticket.php">ticket</a>
         <a class="orange" href="BB.php">Bygg</a>
+        <!-- <a class="orange" href="mal.php">mal</a> -->
+
 
         <?php if (isset($_SESSION['admin']) && $_SESSION['admin'] === 'Admin') { ?>
                 <a class="orange" href="tickting/brukerS.php">støtte</a>

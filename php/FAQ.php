@@ -84,7 +84,7 @@ session_start();
 
 <button class="accordion">Personvern?</button>
 <div class="panel">
-  <p>Storebror ser alt :-D</p>
+  <p>Storebror ser alt :-D(https://lovdata.no/dokument/NL/lov/2018-06-15-38)</p>
 </div>
 
 <button class="accordion">Er restauranten rullestoltilgjengelig?</button>
@@ -93,7 +93,7 @@ session_start();
      samt bred inngang.</p>
 </div>
 
-<p>Alt som er, og alt som vil være, gjør at min hjerne lengter etter å være fri.</p>
+<p></p>
 
 </DIV>
  <!--dette er buntekst og alle div er for å sørge før at bun tekst forblir på bunene --> 
